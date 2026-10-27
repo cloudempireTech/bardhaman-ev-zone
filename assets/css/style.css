@@ -1,44 +1,46 @@
 /* ==========================================================================
    BARDHAMAN EV ZONE - Official Stylesheet
    Design System: TheDivine Floating Dark Glassmorphic Pill
-   Theme: High-Tech Carbon Graphite & Cyber Emerald Neon
+   Theme: Deep Metallic Navy, Brushed Titanium Silver & Electric Cyan (Official Badge Palette)
    ========================================================================== */
 
 :root {
-  --color-bg-dark: #08110e;
-  --color-surface-dark: #0c1713;
-  --color-surface-card: #11201b;
-  --color-surface-elevated: #162923;
-  --color-bg-light: #f6faf8;
+  --color-bg-dark: #080f18;
+  --color-surface-dark: #0e1724;
+  --color-surface-card: #132236;
+  --color-surface-elevated: #1a2d46;
+  --color-bg-light: #f5f8fc;
   --color-surface-light: #ffffff;
   
-  --color-primary: #10b981;
-  --color-primary-glow: rgba(16, 185, 129, 0.35);
-  --color-primary-dark: #059669;
+  --color-primary: #0284c7; /* Electric Cyan-Blue */
+  --color-silver: #cbd5e1;
+  --color-silver-light: #f8fafc;
+  --color-primary-glow: rgba(2, 132, 199, 0.4);
+  --color-primary-dark: #0369a1;
   
-  --color-cyan: #06b6d4;
-  --color-cyan-glow: rgba(6, 182, 212, 0.3);
+  --color-cyan: #38bdf8;
+  --color-cyan-glow: rgba(56, 189, 248, 0.35);
   
   --color-text-main: #0f172a;
   --color-text-muted: #64748b;
   --color-text-white: #ffffff;
   --color-text-dim: #94a3b8;
   
-  --color-border-dark: rgba(16, 185, 129, 0.22);
-  --color-border-light: rgba(16, 185, 129, 0.15);
+  --color-border-dark: rgba(56, 189, 248, 0.25);
+  --color-border-light: rgba(2, 132, 199, 0.18);
   
-  --pill-bg-header: rgba(12, 23, 19, 0.94);
-  --pill-border-header: rgba(16, 185, 129, 0.38);
+  --pill-bg-header: rgba(14, 23, 36, 0.94);
+  --pill-border-header: rgba(56, 189, 248, 0.35);
   
-  --pill-bg-filter: rgba(14, 28, 23, 0.96);
-  --pill-border-filter: rgba(16, 185, 129, 0.35);
+  --pill-bg-filter: rgba(16, 26, 40, 0.96);
+  --pill-border-filter: rgba(56, 189, 248, 0.35);
   
   --font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   --shadow-elevated: 0 20px 45px rgba(0, 0, 0, 0.25);
-  --shadow-neon: 0 0 25px rgba(16, 185, 129, 0.25);
+  --shadow-neon: 0 0 25px rgba(56, 189, 248, 0.3);
 }
 
 /* --------------------------------------------------------------------------
@@ -129,7 +131,7 @@ button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(2, 132, 199, 0.15);
   border: 1.5px solid var(--color-primary);
   display: flex;
   align-items: center;
@@ -219,7 +221,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 0.8rem;
@@ -236,7 +238,7 @@ button {
 .btn-cta-pill:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
-  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
 }
 
 /* Circular Social Buttons */
@@ -335,7 +337,7 @@ button {
   }
   
   .nav-link.active {
-    background: rgba(16, 185, 129, 0.15);
+    background: rgba(2, 132, 199, 0.15);
     border-color: var(--color-primary);
   }
   
@@ -409,7 +411,7 @@ button {
   align-items: center;
   gap: 8px;
   padding: 6px 16px;
-  background: rgba(16, 185, 129, 0.18);
+  background: rgba(56, 189, 248, 0.2);
   border: 1px solid rgba(16, 185, 129, 0.45);
   border-radius: 9999px;
   color: #34d399;
@@ -438,7 +440,7 @@ button {
 }
 
 .hero-title span.text-gradient {
-  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #38bdf8 50%, #0284c7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -550,7 +552,7 @@ button {
    Subpage Banners (Header Shell)
    -------------------------------------------------------------------------- */
 .subpage-banner {
-  background: radial-gradient(circle at 50% 0%, #153227 0%, var(--color-bg-dark) 100%);
+  background: radial-gradient(circle at 50% 0%, #14253a 0%, var(--color-bg-dark) 100%);
   padding: 8.5rem 1.5rem 4rem;
   text-align: center;
   position: relative;
@@ -562,8 +564,8 @@ button {
   align-items: center;
   gap: 6px;
   padding: 5px 14px;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  background: rgba(2, 132, 199, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
   border-radius: 100px;
   color: var(--color-primary);
   font-size: 0.75rem;
@@ -719,7 +721,7 @@ button {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(2, 132, 199, 0.15);
   display: flex;
   flex-direction: column;
   transition: var(--transition-smooth);
@@ -727,7 +729,7 @@ button {
 
 .portfolio-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.18);
+  box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2);
   border-color: var(--color-primary);
 }
 
@@ -793,9 +795,9 @@ button {
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 6px;
-  background: rgba(16, 185, 129, 0.09);
+  background: rgba(2, 132, 199, 0.09);
   color: #065f46;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
 .card-desc {
@@ -872,7 +874,7 @@ button {
   border-radius: 24px;
   padding: 2.5rem 2rem;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
 .section-dark .inquiry-card-wrapper {
@@ -909,7 +911,7 @@ textarea.form-textarea {
   display: block;
   width: 100%;
   padding: 0.85rem 1.15rem;
-  border: 1.5px solid rgba(16, 185, 129, 0.25);
+  border: 1.5px solid rgba(56, 189, 248, 0.28);
   border-radius: 12px;
   background: #ffffff;
   min-height: 48px;
@@ -926,7 +928,7 @@ textarea.form-textarea {
 .section-dark textarea.form-control {
   background: #0b1612;
   color: #ffffff;
-  border-color: rgba(16, 185, 129, 0.35);
+  border-color: rgba(56, 189, 248, 0.35);
 }
 
 .form-control:focus,
@@ -1098,7 +1100,7 @@ textarea.form-textarea {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(2, 132, 199, 0.15);
 }
 
 .gallery-item img {
@@ -1144,7 +1146,7 @@ textarea.form-textarea {
   border-radius: 20px;
   padding: 2rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(56, 189, 248, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1179,7 +1181,7 @@ textarea.form-textarea {
   display: flex;
   align-items: center;
   gap: 12px;
-  border-top: 1px solid rgba(16, 185, 129, 0.15);
+  border-top: 1px solid rgba(2, 132, 199, 0.15);
   padding-top: 1rem;
 }
 
@@ -1187,7 +1189,7 @@ textarea.form-textarea {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #38bdf8 50%, #0284c7 100%);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -1232,7 +1234,7 @@ textarea.form-textarea {
   border-radius: 24px;
   padding: 2.5rem;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
 .section-dark .contact-info-card {
@@ -1334,7 +1336,7 @@ textarea.form-textarea {
    Footer Navigation & Legal Attribution (Section 6 & 156)
    -------------------------------------------------------------------------- */
 .site-footer {
-  background: #050d0a;
+  background: #060c14;
   color: #cbd5e1;
   padding: 4.5rem 1.5rem 2rem;
   border-top: 1px solid var(--color-border-dark);
@@ -1445,4 +1447,32 @@ textarea.form-textarea {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+
+/* Brand Logo Image in Header & Footer */
+.brand-logo-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
+  border: 1.5px solid rgba(203, 213, 225, 0.7);
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.brand-logo-img:hover {
+  transform: scale(1.06) rotate(4deg);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.65);
+}
+
+.footer-logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+  border: 1.5px solid rgba(203, 213, 225, 0.5);
+  margin-bottom: 0.85rem;
 }
