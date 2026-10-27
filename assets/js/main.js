@@ -81,9 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
 
-    reveals.forEach(el => observer.observe(el));
+    reveals.forEach(el => {
+      observer.observe(el);
+      // Immediately activate if already in/near viewport on load
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 100) {
+        el.classList.add('active');
+      }
+    });
   } else {
     reveals.forEach(el => el.classList.add('active'));
   }
@@ -238,11 +245,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const istOffset = 5.5 * 60 * 60 * 1000;
     const istDate = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + istOffset);
     const hour = istDate.getHours();
+    const isMobile = window.innerWidth <= 640;
 
     if (hour >= 9 && hour < 20) {
-      statusTextEl.textContent = 'Showroom Open Now • City Hotel More, G.T. Road • Instant Test Rides Available';
+      statusTextEl.textContent = isMobile 
+        ? 'Open Now • Test Rides' 
+        : 'Showroom Open Now • City Hotel More, G.T. Road • Instant Test Rides Available';
     } else {
-      statusTextEl.textContent = 'Showroom Open Today (9:30 AM – 8:30 PM) • Instant WhatsApp Booking Active';
+      statusTextEl.textContent = isMobile
+        ? 'Open Today (9:30 AM–8:30 PM)'
+        : 'Showroom Open Today (9:30 AM – 8:30 PM) • Instant WhatsApp Booking Active';
     }
   }
 });
