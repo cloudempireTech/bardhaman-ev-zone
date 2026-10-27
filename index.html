@@ -93,6 +93,17 @@
        16:9 Hero Video Section (Mandate 3: top: 0, zero top band)
        ========================================================================= -->
   <section class="hero-video-section">
+    <!-- Abstract Ambient Visual Graphics & Tech Grid -->
+    <div class="abstract-orb abstract-orb-1" aria-hidden="true"></div>
+    <div class="abstract-orb abstract-orb-2" aria-hidden="true"></div>
+    <div class="abstract-tech-grid" aria-hidden="true"></div>
+
+    <!-- Floating Feature Badges (Desktop/Tablet) -->
+    <div class="hero-floating-badges" aria-hidden="true">
+      <span class="abstract-floating-chip chip-left">⚡ 100% Instant Torque</span>
+      <span class="abstract-floating-chip chip-right">🔋 Smart BMS 3.0 Lithium</span>
+    </div>
+
     <video class="hero-video-bg" autoplay muted loop playsinline poster="assets/images/hero-poster.jpg">
       <source src="assets/videos/hero.mp4" type="video/mp4">
     </video>
@@ -100,13 +111,20 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <div class="hero-badge reveal">
-        <span class="verified-dot"></span> 5.0 ★ Rated Multi-Brand EV Destination
+      <!-- Live Showroom Status Bar -->
+      <div class="live-status-bar reveal" id="liveStatusBar">
+        <span class="live-status-dot"></span>
+        <span class="live-status-text" id="liveStatusText">Showroom Open Today • 9:30 AM – 8:30 PM • City Hotel More • Instant Test Rides</span>
+      </div>
+
+      <div class="hero-badge reveal" data-delay="1">
+        <span class="live-beacon"><span class="beacon-core"></span><span class="beacon-ring"></span></span>
+        5.0 ★ Rated Multi-Brand EV Destination
       </div>
 
       <h1 class="hero-title reveal" data-delay="1">
         Future of Electric Mobility <br>
-        <span class="text-gradient">Engineered for Bardhaman</span>
+        <span class="text-gradient">Engineered for </span><span class="dynamic-rotator-container"><span class="dynamic-rotator" id="heroRotator" data-words='["Bardhaman", "Daily Commuters", "Zero Emissions", "Next-Gen Riders", "Smart Fleets"]'>Bardhaman</span></span>
       </h1>
 
       <p class="hero-tagline reveal" data-delay="2">
@@ -124,22 +142,22 @@
         <a href="models.html" class="btn-hero-secondary">EXPLORE MODELS ↗</a>
       </div>
 
-      <!-- Telemetry Highlights -->
+      <!-- Telemetry Highlights with Animated Count-Up -->
       <div class="hero-stats-grid reveal" data-delay="4">
         <div class="hero-stat-card">
-          <div class="hero-stat-num">₹0.15</div>
+          <div class="hero-stat-num"><span class="stat-counter" data-target="0.15" data-prefix="₹" data-decimals="2">₹0.15</span></div>
           <div class="hero-stat-label">Running Cost / KM</div>
         </div>
         <div class="hero-stat-card">
-          <div class="hero-stat-num">140+ KM</div>
+          <div class="hero-stat-num"><span class="stat-counter" data-target="140" data-suffix="+ KM">140+ KM</span></div>
           <div class="hero-stat-label">Extended Range</div>
         </div>
         <div class="hero-stat-card">
-          <div class="hero-stat-num">3-Year</div>
+          <div class="hero-stat-num"><span class="stat-counter" data-target="3" data-suffix="-Year">3-Year</span></div>
           <div class="hero-stat-label">Battery Warranty</div>
         </div>
         <div class="hero-stat-card">
-          <div class="hero-stat-num">5.0 ★</div>
+          <div class="hero-stat-num"><span class="stat-counter" data-target="5.0" data-decimals="1" data-suffix=" ★">5.0 ★</span></div>
           <div class="hero-stat-label">Google Rating</div>
         </div>
       </div>
@@ -194,6 +212,10 @@
        Featured Models Teaser Portfolio (Mandate 2: Pure Portfolio, Zero E-Commerce)
        ========================================================================= -->
   <section class="section section-dark">
+    <!-- Abstract Ambient Visual Graphics & Tech Grid -->
+    <div class="abstract-orb abstract-orb-center" aria-hidden="true"></div>
+    <div class="abstract-tech-grid" aria-hidden="true"></div>
+
     <div class="section-header reveal">
       <span class="section-tag">CURATED EV PORTFOLIO</span>
       <h2 class="section-title">Engineered for Urban Efficiency & Power</h2>
@@ -318,6 +340,42 @@
 </svg>
             ENQUIRE ON WHATSAPP
           </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Commute Fuel vs EV Savings Calculator (Dynamic Interactive Tool) -->
+    <div class="ev-calculator-card reveal" data-delay="2">
+      <div class="calc-header">
+        <span class="calc-badge">⚡ DYNAMIC COST CALCULATOR</span>
+        <h3 class="calc-title">Calculate Your Monthly Fuel Savings</h3>
+        <p class="calc-sub">Drag the slider to your average daily commute and see your direct in-pocket savings vs petrol:</p>
+      </div>
+      <div class="calc-body">
+        <div class="calc-slider-wrap">
+          <div class="calc-slider-labels">
+            <span>Daily Commute Distance:</span>
+            <strong id="commuteVal">30 km / day</strong>
+          </div>
+          <input type="range" id="commuteRange" min="10" max="100" value="30" step="5" class="calc-slider" aria-label="Daily commute distance in kilometers">
+        </div>
+        <div class="calc-results-grid">
+          <div class="calc-res-item">
+            <span class="calc-res-label">Monthly Petrol Cost</span>
+            <span class="calc-res-val petrol-val" id="petrolCost">₹2,880</span>
+          </div>
+          <div class="calc-res-item">
+            <span class="calc-res-label">EV Zone Electric Cost</span>
+            <span class="calc-res-val ev-val" id="evCost">₹135</span>
+          </div>
+          <div class="calc-res-item highlight">
+            <span class="calc-res-label">Monthly In-Pocket Savings</span>
+            <span class="calc-res-val savings-val" id="monthlySavings">₹2,745</span>
+          </div>
+          <div class="calc-res-item">
+            <span class="calc-res-label">Annual Petrol Saved</span>
+            <span class="calc-res-val annual-val" id="annualSavings">₹32,940</span>
+          </div>
         </div>
       </div>
     </div>

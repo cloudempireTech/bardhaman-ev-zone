@@ -131,4 +131,118 @@ document.addEventListener('DOMContentLoaded', () => {
       window.open(target, '_blank', 'noopener,noreferrer');
     });
   });
+
+  // 6. Dynamic Keyword Rotator in Hero
+  const rotatorEl = document.getElementById('heroRotator');
+  if (rotatorEl) {
+    let words = [];
+    try {
+      words = JSON.parse(rotatorEl.getAttribute('data-words')) || [];
+    } catch (e) {
+      words = ['Bardhaman', 'Daily Commuters', 'Zero Emissions', 'Next-Gen Riders', 'Smart Fleets'];
+    }
+    if (words.length > 1) {
+      let currentIndex = 0;
+      setInterval(() => {
+        rotatorEl.classList.add('fade-out');
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % words.length;
+          rotatorEl.textContent = words[currentIndex];
+          rotatorEl.classList.remove('fade-out');
+          rotatorEl.classList.add('fade-in');
+          setTimeout(() => {
+            rotatorEl.classList.remove('fade-in');
+          }, 350);
+        }, 350);
+      }, 2800);
+    }
+  }
+
+  // 7. Animated Telemetry Count-Up Statistics
+  const counters = document.querySelectorAll('.stat-counter');
+  if (counters.length > 0 && 'IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.getAttribute('data-target') || 0);
+          const prefix = el.getAttribute('data-prefix') || '';
+          const suffix = el.getAttribute('data-suffix') || '';
+          const decimals = parseInt(el.getAttribute('data-decimals') || 0, 10);
+          const duration = 1600; // ms
+          const startTime = performance.now();
+
+          const updateCount = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const currentVal = target * easeOut;
+
+            el.textContent = `${prefix}${currentVal.toFixed(decimals)}${suffix}`;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCount);
+            } else {
+              el.textContent = `${prefix}${target.toFixed(decimals)}${suffix}`;
+            }
+          };
+
+          requestAnimationFrame(updateCount);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+  }
+
+  // 8. Interactive EV Cost vs. Petrol Savings Calculator
+  const commuteRange = document.getElementById('commuteRange');
+  if (commuteRange) {
+    const commuteVal = document.getElementById('commuteVal');
+    const petrolCostEl = document.getElementById('petrolCost');
+    const evCostEl = document.getElementById('evCost');
+    const monthlySavingsEl = document.getElementById('monthlySavings');
+    const annualSavingsEl = document.getElementById('annualSavings');
+
+    const updateCalculator = () => {
+      const dailyKm = parseInt(commuteRange.value, 10);
+      commuteVal.textContent = `${dailyKm} km / day`;
+
+      const monthlyKm = dailyKm * 30;
+      // Petrol benchmark: ~35-40 km/l at Rs 106/l -> ~Rs 3.20/km in city traffic
+      const petrolPerKm = 3.20;
+      const evPerKm = 0.15; // Bardhaman EV Zone certified efficiency
+
+      const monthlyPetrol = Math.round(monthlyKm * petrolPerKm);
+      const monthlyEv = Math.round(monthlyKm * evPerKm);
+      const monthlySavings = monthlyPetrol - monthlyEv;
+      const annualSavings = monthlySavings * 12;
+
+      petrolCostEl.textContent = `₹${monthlyPetrol.toLocaleString('en-IN')}`;
+      evCostEl.textContent = `₹${monthlyEv.toLocaleString('en-IN')}`;
+      monthlySavingsEl.textContent = `₹${monthlySavings.toLocaleString('en-IN')}`;
+      annualSavingsEl.textContent = `₹${annualSavings.toLocaleString('en-IN')}`;
+    };
+
+    commuteRange.addEventListener('input', updateCalculator);
+    updateCalculator(); // Initialize on load
+  }
+
+  // 9. Live Showroom Status Bar (IST Time)
+  const statusTextEl = document.getElementById('liveStatusText');
+  if (statusTextEl) {
+    const now = new Date();
+    // Indian Standard Time UTC+5:30
+    const istOffset = 5.5 * 60 * 60 * 1000;
+    const istDate = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + istOffset);
+    const hour = istDate.getHours();
+
+    if (hour >= 9 && hour < 20) {
+      statusTextEl.textContent = 'Showroom Open Now • City Hotel More, G.T. Road • Instant Test Rides Available';
+    } else {
+      statusTextEl.textContent = 'Showroom Open Today (9:30 AM – 8:30 PM) • Instant WhatsApp Booking Active';
+    }
+  }
 });

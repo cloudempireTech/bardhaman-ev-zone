@@ -556,7 +556,13 @@ button {
   padding: 8.5rem 1.5rem 4rem;
   text-align: center;
   position: relative;
+  overflow: hidden;
   border-bottom: 1px solid var(--color-border-dark);
+}
+
+.subpage-banner > * {
+  position: relative;
+  z-index: 2;
 }
 
 .subpage-badge {
@@ -668,6 +674,8 @@ button {
 .section-dark {
   background-color: var(--color-bg-dark);
   color: #ffffff;
+  position: relative;
+  overflow: hidden;
 }
 
 .section-header {
@@ -1477,4 +1485,433 @@ textarea.form-textarea {
   border: 1.5px solid rgba(56, 189, 248, 0.5);
   background: #080f18;
   margin-bottom: 0.85rem;
+}
+
+/* ==========================================================================
+   Abstract Visual Graphics, Micro-Animations & Dynamic Elements
+   ========================================================================== */
+
+/* 1. Abstract Background Glowing Orbs */
+.abstract-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  animation: orbDriftSlow 12s ease-in-out infinite alternate;
+}
+
+.abstract-orb-1 {
+  width: 420px;
+  height: 420px;
+  top: 10%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(2, 132, 199, 0.15) 60%, transparent 80%);
+}
+
+.abstract-orb-2 {
+  width: 500px;
+  height: 500px;
+  bottom: 5%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.28) 0%, rgba(2, 132, 199, 0.12) 65%, transparent 80%);
+  animation-delay: -6s;
+  animation-duration: 16s;
+}
+
+.abstract-orb-center {
+  width: 550px;
+  height: 550px;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(14, 165, 233, 0.08) 60%, transparent 80%);
+}
+
+@keyframes orbDriftSlow {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.08);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate(-25px, 25px) scale(0.96);
+    opacity: 0.55;
+  }
+}
+
+/* 2. Abstract Futuristic Tech Circuit Grid */
+.abstract-tech-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(56, 189, 248, 0.15) 1px, transparent 0),
+    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px, 64px 64px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 50%, #000 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 50%, #000 60%, transparent 100%);
+  opacity: 0.7;
+}
+
+/* 3. Floating Feature Badges (Desktop & Tablet) */
+.hero-floating-badges {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.abstract-floating-chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(14, 23, 36, 0.82);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(56, 189, 248, 0.2);
+  border-radius: 9999px;
+  color: #e2e8f0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.3s ease;
+}
+
+.chip-left {
+  top: 26%;
+  left: 4%;
+  animation: floatChip1 6.5s ease-in-out infinite;
+}
+
+.chip-right {
+  top: 36%;
+  right: 4%;
+  animation: floatChip2 7.5s ease-in-out infinite 1s;
+}
+
+@keyframes floatChip1 {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+@keyframes floatChip2 {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-2deg);
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-floating-badges {
+    display: none;
+  }
+}
+
+/* 4. Dynamic Text Headline Rotator */
+.dynamic-rotator-container {
+  display: inline-block;
+  vertical-align: bottom;
+  position: relative;
+  min-width: 280px;
+  text-align: left;
+}
+
+.dynamic-rotator {
+  display: inline-block;
+  background: linear-gradient(135deg, #38bdf8 0%, #00f0ff 50%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  position: relative;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  white-space: nowrap;
+}
+
+.dynamic-rotator.fade-out {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.dynamic-rotator.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 5. Live Showroom Beacon & Status Bar */
+.live-beacon {
+  position: relative;
+  display: inline-flex;
+  width: 10px;
+  height: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+}
+
+.beacon-core {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.beacon-ring {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #10b981;
+  border-radius: 50%;
+  animation: beaconPulse 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.live-status-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  background: rgba(14, 23, 36, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 9999px;
+  color: #cbd5e1;
+  font-size: 0.84rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.live-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: beaconPulse 2s infinite;
+}
+
+/* 6. Shimmer Sweep & Enhanced Hover Micro-Animations */
+.btn-hero-primary, .btn-cta-pill, .portfolio-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hero-primary::after, .btn-cta-pill::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 80%
+  );
+  transform: translateX(-100%) rotate(30deg);
+  animation: btnShimmer 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes btnShimmer {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  20%, 100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+/* Card 3D Lift & Electric Underglow */
+.portfolio-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35), 0 0 30px rgba(56, 189, 248, 0.25);
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+/* 7. Interactive EV Cost vs. Petrol Savings Calculator */
+.ev-calculator-card {
+  max-width: 900px;
+  margin: 3.5rem auto 0;
+  background: linear-gradient(135deg, rgba(14, 23, 36, 0.95) 0%, rgba(19, 34, 54, 0.9) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 20px;
+  padding: 2.2rem 2rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3), 0 0 25px rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(16px);
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.calc-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.calc-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 9999px;
+  color: #38bdf8;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.calc-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.calc-sub {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.calc-slider-wrap {
+  background: rgba(8, 15, 24, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.calc-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+.calc-slider-labels strong {
+  color: #38bdf8;
+  font-size: 1.2rem;
+  font-family: var(--font-heading);
+}
+
+.calc-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  background: #1e293b;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 12px #38bdf8;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.calc-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.calc-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.calc-res-item {
+  background: rgba(8, 15, 24, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  text-align: center;
+}
+
+.calc-res-item.highlight {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(2, 132, 199, 0.15) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+.calc-res-label {
+  display: block;
+  font-size: 0.76rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.calc-res-val {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.calc-res-val.petrol-val {
+  color: #f87171;
+}
+
+.calc-res-val.ev-val {
+  color: #38bdf8;
+}
+
+.calc-res-val.savings-val {
+  color: #34d399;
+}
+
+.calc-res-val.annual-val {
+  color: #fbbf24;
 }
