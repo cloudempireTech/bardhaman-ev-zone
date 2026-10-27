@@ -101,56 +101,34 @@ async function dispatch() {
 
     // Open attach menu
     try {
-      const attachBtn = page.locator('button[aria-label*="Attach" i], div[aria-label*="Attach" i], span[data-icon="plus"], span[data-icon="attach-menu-plus"], span[data-icon="clip"], button[title*="Attach" i]').first();
+      console.log('[WA OUTREACH] Clicking Attach button...');
+      const attachBtn = page.locator('button[aria-label*="Attach" i], div[aria-label*="Attach" i], span[data-icon="plus"], span[data-icon="attach-menu-plus"]').first();
       await attachBtn.waitFor({ state: 'visible', timeout: 15000 });
       await attachBtn.click();
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(1500);
 
-      // Enable multiple on file inputs
-      await page.evaluate(() => {
-        document.querySelectorAll('input[type="file"]').forEach(i => i.setAttribute('multiple', 'multiple'));
-      });
+      // Trigger Photos & videos file chooser to strictly prevent sticker conversion
+      console.log('[WA OUTREACH] Selecting "Photos & videos" option via filechooser...');
+      const photosOption = page.locator('span:has-text("Photos & videos"), li:has-text("Photos & videos"), div[role="button"]:has-text("Photos & videos")').first();
+      await photosOption.waitFor({ state: 'visible', timeout: 10000 });
 
-      const fileInputs = await page.locator('input[type="file"]').all();
-      console.log(`[WA OUTREACH] Found ${fileInputs.length} file inputs for media.`);
+      const [fileChooser] = await Promise.all([
+        page.waitForEvent('filechooser', { timeout: 15000 }),
+        photosOption.click()
+      ]);
 
-      let uploaded = false;
-      for (let i = fileInputs.length - 1; i >= 0; i--) {
-        try {
-          await fileInputs[i].setInputFiles(screenshots);
-          console.log(`[WA OUTREACH] Successfully attached screenshots to input[${i}]`);
-          uploaded = true;
-          break;
-        } catch (err) {
-          console.log(`[WA OUTREACH] Multiple upload attempt on input[${i}]: ${err.message}`);
-        }
-      }
+      console.log('[WA OUTREACH] FileChooser triggered! Attaching 4 screenshots as authentic photo attachments...');
+      await fileChooser.setFiles(screenshots);
 
-      if (!uploaded) {
-        console.log('[WA OUTREACH] Trying single screenshot attach...');
-        for (let i = fileInputs.length - 1; i >= 0; i--) {
-          try {
-            await fileInputs[i].setInputFiles(screenshots[0]);
-            console.log(`[WA OUTREACH] Attached hero screenshot to input[${i}]`);
-            uploaded = true;
-            break;
-          } catch (err) {
-            console.log(`[WA OUTREACH] Single upload attempt on input[${i}]: ${err.message}`);
-          }
-        }
-      }
+      console.log('[WA OUTREACH] Waiting for photo preview overlay to render...');
+      await page.waitForTimeout(5000);
 
-      if (uploaded) {
-        console.log('[WA OUTREACH] Waiting for media preview overlay...');
-        await page.waitForTimeout(5000);
-
-        // Click media send button
-        const mediaSendBtn = page.locator('span[data-icon="send"], button[aria-label*="Send" i], div[aria-label*="Send" i], span[data-icon="checkmark-medium"]').first();
-        await mediaSendBtn.waitFor({ state: 'visible', timeout: 15000 });
-        await mediaSendBtn.click();
-        console.log('[WA OUTREACH] Media send button clicked!');
-        await page.waitForTimeout(14000);
-      }
+      // Click media send button
+      const mediaSendBtn = page.locator('span[data-icon="send"], div[aria-label*="Send" i], button[aria-label*="Send" i]').first();
+      await mediaSendBtn.waitFor({ state: 'visible', timeout: 15000 });
+      await mediaSendBtn.click();
+      console.log('[WA OUTREACH] Media send button clicked!');
+      await page.waitForTimeout(15000);
     } catch (mediaErr) {
       console.warn('[WA OUTREACH] Media attachment notice (text was dispatched):', mediaErr.message);
     }
