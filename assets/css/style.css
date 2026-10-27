@@ -1455,24 +1455,26 @@ textarea.form-textarea {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
-  border: 1.5px solid rgba(203, 213, 225, 0.7);
+  border: 1.5px solid rgba(56, 189, 248, 0.6);
+  background: #080f18;
   flex-shrink: 0;
   transition: var(--transition-smooth);
 }
 
 .brand-logo-img:hover {
-  transform: scale(1.06) rotate(4deg);
-  box-shadow: 0 0 22px rgba(56, 189, 248, 0.65);
+  transform: scale(1.06) rotate(3deg);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.75);
 }
 
 .footer-logo-img {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
-  border: 1.5px solid rgba(203, 213, 225, 0.5);
+  border: 1.5px solid rgba(56, 189, 248, 0.5);
+  background: #080f18;
   margin-bottom: 0.85rem;
 }
