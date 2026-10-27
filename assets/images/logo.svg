@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="520" height="120" fill="none">
+  <defs>
+    <linearGradient id="evGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="50%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f291e" />
+      <stop offset="100%" stop-color="#091410" />
+    </linearGradient>
+    <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Badge Emblem -->
+  <g transform="translate(10, 10)">
+    <!-- Outer Shield / Hexagon -->
+    <rect x="0" y="0" width="100" height="100" rx="26" fill="url(#shieldBg)" stroke="url(#evGlow)" stroke-width="2.5" />
+    
+    <!-- Speed Wings & EV Bolt -->
+    <!-- Wing left -->
+    <path d="M22 42 L42 42 L34 58 L20 58 Z" fill="#10b981" opacity="0.85" />
+    <!-- Wing right -->
+    <path d="M78 42 L58 42 L66 58 L80 58 Z" fill="#06b6d4" opacity="0.85" />
+    
+    <!-- Central Lightning Spark -->
+    <path d="M54 22 L36 52 L50 52 L44 78 L68 46 L52 46 Z" fill="url(#evGlow)" filter="url(#neonBlur)" />
+    
+    <!-- Energy Node Dots -->
+    <circle cx="50" cy="88" r="3.5" fill="#10b981" />
+  </g>
+
+  <!-- Brand Typography -->
+  <g transform="translate(130, 24)">
+    <!-- Main Title -->
+    <text x="0" y="38" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-weight="900" font-size="34" letter-spacing="1.5" fill="#ffffff">
+      BARDHAMAN <tspan fill="url(#evGlow)">EV ZONE</tspan>
+    </text>
+    
+    <!-- Subtitle Tracked -->
+    <text x="2" y="66" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-weight="700" font-size="11.5" letter-spacing="3.5" fill="#94a3b8">
+      PREMIER MULTI-BRAND ELECTRIC SHOWROOM
+    </text>
+
+    <!-- Accent Pill Tag -->
+    <g transform="translate(0, 76)">
+      <rect x="0" y="0" width="168" height="15" rx="7.5" fill="rgba(16, 185, 129, 0.15)" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1" />
+      <text x="84" y="11" font-family="'Inter', sans-serif" font-weight="800" font-size="8.5" letter-spacing="1.2" fill="#10b981" text-anchor="middle">
+        CITY HOTEL MORE • BARDHAMAN
+      </text>
+    </g>
+  </g>
+</svg>

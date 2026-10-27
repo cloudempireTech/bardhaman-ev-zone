@@ -1,0 +1,26 @@
+# BARDHAMAN EV ZONE - Brand Identity & Design System
+
+## 1. Brand Concept & Ethos
+- Brand Name: BARDHAMAN EV ZONE
+- Category: Multi-Brand Electric Two-Wheeler Showroom & EV Technology Specialist
+- Locality: City Hotel More, G.T. Road, Khagragorh, Bardhaman, West Bengal 713104
+- Phone & WhatsApp: +91 82503 47130
+- Rating: 5.0 ★★★★★ (Verified Google Patron Rating)
+
+## 2. Color Mood & Harmony
+- Dark Carbon Graphite: #0c1713 / rgba(12, 23, 19, 0.94) (Midnight Electric chassis)
+- Cyber Emerald Neon: #10b981 / #059669 (Clean energy propulsion)
+- Electric Cyan / Teal Glow: #06b6d4 / #0891b2 (Digital dashboard telemetry)
+- Ultra White / Platinum: #ffffff / #f8fafc (Crisp typography & high contrast)
+- Border Accent: rgba(16, 185, 129, 0.35) (Floating pill glassmorphic border)
+
+## 3. Brand Pillars
+1. Zero Emission, Maximum Performance: High-torque electric motors, intelligent BMS, lithium iron phosphate (LFP) longevity.
+2. Verified Economy: 120km+ per charge at under ₹0.18/km, zero petrol dependence, instant government subsidy support.
+3. Multi-Brand Showroom Experience: Curated portfolio of high-speed & non-RTO electric scooters, stylish electric commuter motorcycles, and commercial cargo fleets.
+4. Comprehensive Lifetime Care: Genuine OEM spare parts, battery health diagnostics, high-speed roadside assistance, and certified on-site maintenance.
+
+## 4. 16:9 Hero Video Summary
+- Asset: assets/videos/hero.mp4
+- Poster: assets/images/hero-poster.jpg
+- Video Description: 16:9 cinematic landscape showcasing next-gen electric mobility with aerodynamic lines, glowing LED daytime running lights, and ambient illuminated telemetry.
