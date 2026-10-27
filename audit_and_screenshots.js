@@ -61,6 +61,22 @@ async function runAudit() {
   await desktopPage.screenshot({ path: shot4Path, fullPage: false });
   console.log(`[SAVED] Shot 4 saved to ${shot4Path}`);
 
+  // Screenshot 5: Reviews & Handover Celebrations
+  console.log('[AUDIT] Capturing ev_shot_5_reviews.png...');
+  await desktopPage.goto(`file:///${path.join(baseDir, 'reviews.html').replace(/\\/g, '/')}`, { waitUntil: 'networkidle' });
+  await desktopPage.waitForTimeout(1000);
+  const shot5Path = path.join(screenshotsDir, 'ev_shot_5_reviews.png');
+  await desktopPage.screenshot({ path: shot5Path, fullPage: false });
+  console.log(`[SAVED] Shot 5 saved to ${shot5Path}`);
+
+  // Screenshot 6: Gallery
+  console.log('[AUDIT] Capturing ev_shot_6_gallery.png...');
+  await desktopPage.goto(`file:///${path.join(baseDir, 'gallery.html').replace(/\\/g, '/')}`, { waitUntil: 'networkidle' });
+  await desktopPage.waitForTimeout(1000);
+  const shot6Path = path.join(screenshotsDir, 'ev_shot_6_gallery.png');
+  await desktopPage.screenshot({ path: shot6Path, fullPage: false });
+  console.log(`[SAVED] Shot 6 saved to ${shot6Path}`);
+
   await desktopContext.close();
 
   // 2. Mobile Context (390x844 - iPhone 12/13/14)
