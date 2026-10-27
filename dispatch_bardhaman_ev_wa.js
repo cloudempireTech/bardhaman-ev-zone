@@ -9,7 +9,17 @@ const watchdog = setTimeout(() => {
   process.exit(1);
 }, WATCHDOG_TIMEOUT_MS).unref();
 
-const dir = path.join(process.env.LOCALAPPDATA || 'C:\\Users\\dasan\\AppData\\Local', 'Google', 'Chrome', 'AutomationProfile_Active');
+const primaryDir = path.join(process.env.LOCALAPPDATA || 'C:\\Users\\dasan\\AppData\\Local', 'Google', 'Chrome', 'AutomationProfile');
+const fallbackDir = path.join(process.env.LOCALAPPDATA || 'C:\\Users\\dasan\\AppData\\Local', 'Google', 'Chrome', 'AutomationProfile_Active');
+const dir = fs.existsSync(primaryDir) ? primaryDir : fallbackDir;
+console.log(`[WA OUTREACH] Using Chrome Profile Directory: ${dir}`);
+
+// Ensure lockfile is cleaned before launch
+const lockfile = path.join(dir, 'lockfile');
+if (fs.existsSync(lockfile)) {
+  try { fs.unlinkSync(lockfile); } catch (_) {}
+}
+
 const phone = '918250347130';
 
 const screenshots = [
@@ -40,7 +50,7 @@ Sharing a few screenshots above. If you like it, we’d love to help you set thi
 — Sounak, Cloudempire (Kolkata)`;
 
 async function dispatch() {
-  console.log('[WA OUTREACH] Launching persistent context for WhatsApp Web outreach with AutomationProfile_Active...');
+  console.log('[WA OUTREACH] Launching persistent context for WhatsApp Web outreach...');
   const ctx = await chromium.launchPersistentContext(dir, {
     channel: 'chrome',
     headless: true,
@@ -57,11 +67,10 @@ async function dispatch() {
     await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
 
     console.log('[WA OUTREACH] Waiting for WhatsApp Web to sync and chat interface to load...');
-    // Wait for the side panel or chat interface to appear
     await page.waitForSelector('#side, div[contenteditable="true"], div[data-tab="3"]', { timeout: 60000 }).catch(() => {});
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(6000);
 
-    // Wait for "Starting chat" modal to disappear if present
+    // Wait for "Starting chat" overlay to detach if present
     await page.waitForSelector('text="Starting chat"', { state: 'detached', timeout: 35000 }).catch(() => {});
     await page.waitForTimeout(4000);
 
@@ -70,14 +79,24 @@ async function dispatch() {
     await page.screenshot({ path: step1Path }).catch(() => {});
     console.log('[WA OUTREACH] Step 1 screenshot taken.');
 
-    // Look for send button
+    // Look for send button or composer
     console.log('[WA OUTREACH] Looking for send button or composer...');
     const sendBtn = page.locator('span[data-icon="send"], button[aria-label*="Send" i], div[aria-label*="Send" i]').first();
-    await sendBtn.waitFor({ state: 'visible', timeout: 45000 });
-    console.log('[WA OUTREACH] Send button visible! Dispatching pitch text...');
-    await sendBtn.click();
-    await page.waitForTimeout(4000);
+    const hasSendBtn = await sendBtn.isVisible({ timeout: 15000 }).catch(() => false);
 
+    if (hasSendBtn) {
+      console.log('[WA OUTREACH] Send button visible! Clicking send...');
+      await sendBtn.click();
+    } else {
+      console.log('[WA OUTREACH] Send button not immediately visible, targeting active message composer...');
+      const composer = page.locator('footer div[contenteditable="true"], div[data-tab="10"]').first();
+      await composer.waitFor({ state: 'visible', timeout: 20000 });
+      await composer.click();
+      await page.keyboard.press('Enter');
+      console.log('[WA OUTREACH] Pressed Enter in composer.');
+    }
+
+    await page.waitForTimeout(5000);
     console.log('[WA OUTREACH] Pitch text dispatched! Now attaching 4 desktop previews...');
 
     // Open attach menu
@@ -85,7 +104,7 @@ async function dispatch() {
       const attachBtn = page.locator('button[aria-label*="Attach" i], div[aria-label*="Attach" i], span[data-icon="plus"], span[data-icon="attach-menu-plus"], span[data-icon="clip"], button[title*="Attach" i]').first();
       await attachBtn.waitFor({ state: 'visible', timeout: 15000 });
       await attachBtn.click();
-      await page.waitForTimeout(1500);
+      await page.waitForTimeout(2000);
 
       // Enable multiple on file inputs
       await page.evaluate(() => {
@@ -137,7 +156,7 @@ async function dispatch() {
     }
 
     // Final screenshot verifying complete message delivery
-    const verifiedPath = 'C:\\Users\\dasan\\.gemini\\antigravity\\scratch\\bardhaman-ev-zone\\assets\\screenshots\\wa_outreach_verified_success.png';
+    const verifiedPath = path.join(__dirname, 'assets', 'screenshots', 'wa_outreach_verified_success.png');
     await page.screenshot({ path: verifiedPath });
     console.log(`[WA OUTREACH] Verification screenshot saved to ${verifiedPath}`);
 
@@ -146,7 +165,7 @@ async function dispatch() {
     try {
       const pages = ctx.pages();
       if (pages.length > 0) {
-        await pages[0].screenshot({ path: 'C:\\Users\\dasan\\.gemini\\antigravity\\scratch\\bardhaman-ev-zone\\assets\\screenshots\\wa_dispatch_error.png' });
+        await pages[0].screenshot({ path: path.join(__dirname, 'assets', 'screenshots', 'wa_dispatch_error.png') });
       }
     } catch (_) {}
     throw err;
